@@ -125,6 +125,7 @@ namespace Ela_Kai_Pou.Entities.Migrations
                         Price = c.Decimal(nullable: false, storeType: "money"),
                         Description = c.String(maxLength: 150),
                         IsActive = c.Boolean(nullable: false),
+                        IsInOrder = c.Boolean(nullable: false),
                         Sweetness = c.Int(),
                         Size = c.Int(),
                     })

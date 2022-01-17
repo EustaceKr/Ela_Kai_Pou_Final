@@ -7,13 +7,13 @@ namespace Ela_Kai_Pou.Entities.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class IsInOrderAdded : IMigrationMetadata
+    public sealed partial class Init : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(IsInOrderAdded));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Init));
         
         string IMigrationMetadata.Id
         {
-            get { return "202201171829383_IsInOrderAdded"; }
+            get { return "202201171937175_Init"; }
         }
         
         string IMigrationMetadata.Source

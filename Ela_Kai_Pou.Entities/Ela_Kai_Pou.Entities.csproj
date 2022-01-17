@@ -69,13 +69,9 @@
     <Compile Include="Interfaces\IOrderRepository.cs" />
     <Compile Include="Interfaces\IOrderItemRepository.cs" />
     <Compile Include="Interfaces\IUnitOfWork.cs" />
-    <Compile Include="Migrations\202201091456536_Init.cs" />
-    <Compile Include="Migrations\202201091456536_Init.Designer.cs">
-      <DependentUpon>202201091456536_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202201171829383_IsInOrderAdded.cs" />
-    <Compile Include="Migrations\202201171829383_IsInOrderAdded.Designer.cs">
-      <DependentUpon>202201171829383_IsInOrderAdded.cs</DependentUpon>
+    <Compile Include="Migrations\202201171937175_Init.cs" />
+    <Compile Include="Migrations\202201171937175_Init.Designer.cs">
+      <DependentUpon>202201171937175_Init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AppRole.cs" />
@@ -92,11 +88,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202201091456536_Init.resx">
-      <DependentUpon>202201091456536_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202201171829383_IsInOrderAdded.resx">
-      <DependentUpon>202201171829383_IsInOrderAdded.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202201171937175_Init.resx">
+      <DependentUpon>202201171937175_Init.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
