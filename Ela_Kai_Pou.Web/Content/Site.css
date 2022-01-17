@@ -1,0 +1,243 @@
+﻿body {
+    display: block;
+    overflow-x: hidden;
+}
+
+/*Navbar Start*/
+nav {
+    background-color: whitesmoke;
+}
+
+.navbar-brand img {
+    max-height: 70px;
+}
+
+nav ul li a {
+    display:block;
+    color: dimgray;
+    font-size: 18px;
+    margin: auto 7px;
+    text-decoration: none;
+}
+    nav ul li a:hover {
+        color: black;
+    }
+
+.dropdown a {
+    color: dimgray;
+    font-size: 18px;
+    margin: auto 10px;
+    text-decoration: none;
+}
+
+.dropdown ul li a, {
+    color: dimgray;
+    font-size: 18px;
+    margin: auto 10px;
+    text-decoration: none;
+    text-align: center;
+}
+
+    .dropdown ul li a:hover {
+        color: black;
+    }
+
+#cart{
+    font-size:22px;
+    line-height:44px;
+}
+/*Navbar End*/
+
+/*Main Start*/
+section{
+    padding-top: 100px;
+    padding-bottom: 120px;
+}
+
+section h1{
+    text-transform: uppercase;
+    font-weight:900;
+    color: dimgrey;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+section p{
+    font-size: 16px;
+    font-weight: 300;
+}
+
+#hero {
+    padding-top: 150px;
+    padding-bottom: 100px;
+}
+
+#hero col{
+    justify-content: center;
+    flex-direction: column;
+    display: flex;
+}
+
+#hero .img-col{
+    justify-content: flex-end;
+    margin-top: 0px;
+}
+
+#hero img{
+    max-width: 120% !important;
+    width: 120%;
+}
+
+.card-body{
+    margin-top: 50px;
+}
+
+#hero .card{
+    box-shadow: 11px 7px 16px #f9f9f9;
+    border:0;
+    text-align: center
+}
+
+#hero .icon{
+    width: 120px;
+    height: 120px;
+    margin-bottom: 20px;
+}
+
+#hero .icon2 {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+#hero .icon3{
+    width:165px;
+    height:120px;
+    margin-bottom: 20px;
+}
+
+#about-us{
+    padding-top:0;
+}
+
+#footer{
+    text-align:right;
+    background-color:whitesmoke;
+    color: black;
+    font-weight:300;
+}
+.scrolled-down {
+    transform: translateY(-100%);
+    transition: all 0.3s ease-in-out;
+}
+
+.scrolled-up {
+    transform: translateY(0);
+    transition: all 0.3s ease-in-out;
+}
+
+#navbar{
+    transition: 0.5s
+}
+
+.adminBtn {
+    font-size: 16px;
+    text-decoration: none;
+    text-align: center;
+}
+
+#paypal {
+    display: none;
+}
+/*Navbar End*/
+
+.paymentRadio {
+    font-size: 20px;
+}
+
+.paymentPadding {
+    margin: 8px;
+}
+
+.mycolor{
+    background-color:#b01313;
+    color: #1f1f1f;
+}
+
+/*Chat*/
+.chat {
+list-style: none;
+margin: 0;
+padding: 0;
+}
+.chat li {
+margin-bottom: 5px;
+padding-bottom: 5px;
+margin-top: 5px;
+width: auto;
+padding-left: 10px;
+padding-right: 10px;
+}
+
+.chat-care {
+overflow-y: scroll;
+height: 600px;
+}
+
+.chat-care .chat-body {
+display: inline-block;
+max-width: 80%;
+background-color: #FFC195;
+border-radius: 12.5px;
+}
+
+.chat-care .agent {
+text-align: left;
+float: left;
+}
+
+.chat-care .left {
+float: left;
+}
+
+.chat-care .right {
+float: right;
+}
+
+.clearfix {
+clear: both;
+}
+
+#btn-chat {
+margin-left: 5px;
+}
+
+#btn-input {
+width: 80%;
+}
+
+#chat-main {
+margin-top: 0;
+}
+
+.chat-msg {
+border-radius: 20px;
+}
+
+::-webkit-scrollbar-track {
+box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+width: 12px;
+background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+background-color: #555;
+}
+/*Chat end*/

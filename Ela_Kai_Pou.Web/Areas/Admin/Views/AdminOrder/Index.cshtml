@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Ela_Kai_Pou.Entities.Models.Order>
+@using Ela_Kai_Pou.Entities.Enums
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <h1 class="text-center">Orders</h1>
+    <hr />
+    <br />
+    <table class="table table-hover">
+        <tr class="text-center">
+            <th >
+                <h5>Email</h5>                  
+            </th>
+            <th>
+                <h5>Full Name</h5>
+            </th>
+            <th>
+                <h5>Created</h5>
+            </th>
+            <th >
+                <h5>Total Price</h5>
+            </th>
+            <th >
+                <h5>Order Status</h5>
+            </th>
+            <th>
+                <h5>Change Status</h5>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr class="text-center">
+                <td>
+                    @Html.DisplayFor(modelItem => item.User.Email)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.User.FullName)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.OrderStatus, new { @class = "form-control" })
+                </td>
+                @using (Html.BeginForm("Edit", "AdminOrder", new { id = item.Id, status = item.OrderStatus }, FormMethod.Post, new { @class = "d-inline" }))
+                {
+                    <td style="text-align: center">
+
+                        <button class="btn btn-warning btn-sm" type="submit">></button>
+                    </td>
+                }
+            </tr>
+        }
+    </table>
+</section>
+

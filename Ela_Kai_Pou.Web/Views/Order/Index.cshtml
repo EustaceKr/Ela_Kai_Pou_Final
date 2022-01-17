@@ -1,0 +1,42 @@
+﻿@using Ela_Kai_Pou.Entities.Models
+@model IEnumerable<Ela_Kai_Pou.Entities.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <h1 class="text-center">My Orders</h1>
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.OrderItems)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalPrice)
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @foreach (var OrderItem in item.OrderItems)
+                    {
+                        <p>@Html.DisplayFor(x => OrderItem.Quantity) @Html.DisplayFor(x => ((Coffee)(OrderItem.Product)).Size) @Html.DisplayFor(x => OrderItem.Product.Name) </p>
+                    }
+                </td>
+                <td>
+                    &euro;@Html.DisplayFor(modelItem => item.TotalPrice)
+                </td>
+            </tr>
+        }
+    </table>
+</section>

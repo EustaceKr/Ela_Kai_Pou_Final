@@ -1,0 +1,155 @@
+﻿@model Ela_Kai_Pou.Entities.Models.Cart
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Cart Details";
+}
+@Styles.Render("~/CustomCss/CartIndex.css")
+
+<section>
+    <h1 class="text-center">My Cart</h1>
+    <hr />
+    @if (ViewBag.Message != null)
+    {
+        <h3>@ViewBag.Message</h3>
+    }
+    else
+    {
+        <table class="table table-light table-striped table-hover">
+            <tr class="table-warning">
+                <th>
+                    Name
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Quantity
+                </th>
+                <th>
+                    Price
+                </th>
+                <th>
+                    Total Price
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.OrderItems)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("RemoveQuantity", "Cart", new { id = item.Product.Id }, FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-secondary btn-sm" type="submit">-</button>
+                        }
+                        @Html.DisplayFor(modelItem => item.Quantity)
+                        @using (Html.BeginForm("AddQuantity", "Cart", new { id = item.Product.Id }, FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-secondary btn-sm" type="submit">+</button>
+                        }
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Product.Price)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TotalPrice)
+                    </td>
+                    <td>
+                        @using (Html.BeginForm("RemoveItem", "Cart", new { id = item.Product.Id }, FormMethod.Post, new { @class = "d-inline" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <button class="btn btn-danger btn-sm mb-1" type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                        }
+                    </td>
+                </tr>
+            }
+            <tr col>
+
+            </tr>
+        </table>
+        <br />
+        <div class="row">
+            <div class="col-10">
+                <h3>The Grand Total is: &#128;@ViewBag.GrandTotal </h3>
+            </div>
+            <div class="col-2 ">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                    Proceed to Payment
+                </button>
+            </div>
+        </div>
+        <div>
+            <!-- Modal -->
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="staticBackdropLabel">Choose your payment method</h4>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="paymentRadio">
+                               
+                                <div class="form-check paymentPadding">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="radioCash" checked>
+                                    <label class="form-check-label" for="cash">
+                                        Cash
+                                    </label>
+                                </div>
+                               
+                                <div class="form-check paymentPadding" >
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="radioPaypal">
+                                    <label class="form-check-label" for="paypal">
+                                        Paypal <i class="fab fa-cc-paypal"></i>
+                                    </label>
+                                </div>                               
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <a id="cash" href="@Url.Action("CompleteOrder", "Cart")">
+                                <button type="button" class="btn btn-success">Complete Order</button>
+                            </a>
+                            <a id="paypal" href="@Url.Action("PaymentWithPaypal", "Cart")">
+                                <button type="button" class="btn btn-success">Complete Order</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        @section scripts {
+            <script>
+                $("input:radio[name='paymentMethod']").change(function () {
+                    let isChecked = $('#radioCash').prop('checked');
+                    console.log(isChecked)
+
+                    if (isChecked) {
+                        $("#paypal").hide();
+                        $("#cash").show();
+                    } else {
+                        $("#cash").hide();
+                        $("#paypal").show();
+                    }
+                });
+            </script>
+        }
+    }
+</section>
+
+
+
+
+

@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Ela_Kai_Pou.Web.Areas.Admin.Models.CoffeeViewModel>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <h1 class="text-center">Manage Products</h1>
+    <hr />
+    <p>
+
+    </p>
+    <table class="table table-light table-striped table-hover">
+        <tr class="table-warning">
+            <th>
+                <h5><strong>Coffee Name</strong></h5>
+            </th>
+            <th class="text-center">
+                <h5><strong>Single Price</strong></h5>
+            </th>
+            <th class="text-center">
+                <h5><strong>Double Price</strong></h5>
+            </th>
+            <th class="text-center">
+                <h5><strong>Quadruple Price</strong></h5>
+            </th>
+            <th class="text-center">
+                <h5 class="text-center"><strong>Description</strong></h5>
+            </th>
+            <th class="text-center">
+                <h5 class="text-center"><strong>Activate</strong></h5>
+            </th>
+            <th class="text-center">
+                <Button type="button" class="btn btn-warning adminBtn" onclick="location.href='@Url.Action("Create","Product",null)'">Create new</Button>
+            </th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Price_Single)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Price_Double)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Price_Quadraple)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td align="center">
+                    @using (Html.BeginForm("DisableProduct", "Product", new { id = item.Id }, FormMethod.Post, new { @class = "d-inline" }))
+                    {
+                        <div class="form-check form-switch">
+                            <label>@Html.CheckBox("IsActive", item.IsActive ? true : false, new { @class = "form-check-input", onChange = "this.form.submit()" })</label>
+                        </div>
+                    }
+                </td>
+                <td class="text-center">
+                    <input type="button" class="btn btn-warning adminBtn" value="Edit" onclick="location.href='@Url.Action("Edit","Product",new { id = item.Id })'" />
+                    @if (item.IsInOrder)
+                    {
+                        <input type="button" disabled class="btn btn-warning adminBtn" value="Delete"/>
+                    }
+                    else
+                    {
+                        <input type="button" class="btn btn-warning adminBtn" value="Delete" onclick="location.href='@Url.Action("Delete","Product",new { id = item.Id })'" />
+                    }
+
+                </td>
+            </tr>
+        }
+    </table>
+</section>

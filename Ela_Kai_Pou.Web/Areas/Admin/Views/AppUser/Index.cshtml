@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Ela_Kai_Pou.Entities.Models.AppUser>
+
+@{
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <h1 class="text-center">Customers</h1>
+    <hr />
+    <table class="table">
+        <tr class="">
+            <th></th>
+            <th></th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+            </tr>
+        }
+    </table>
+</section>

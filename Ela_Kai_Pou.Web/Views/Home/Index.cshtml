@@ -1,0 +1,66 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@Styles.Render("~/CustomCss/HomeIndex.css")
+
+
+<section id="hero">
+    <div class="container">
+        <div class="row">
+            <div class="col-4">
+                <h1>Coffee</h1><h1>We make it!</h1>
+                <p>We make it good..!</p>
+                <p>Place your order now!</p>
+                <p>Feel the best virtual coffee in the market.</p>
+            </div>
+            <div class="col-6 img-col">
+                <img src="~/Images/hero-image.jpg" alt="world" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+    <br /><br /><br /><br /><br />
+    <div class="row cards">
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <img src="~/Images/coffee-beans.jpg" alt="beans" class="icon" />
+                    <h5 class="card-title">We take the beans</h5>
+                    <p class="card-text">We only use the best fictional beans from selected parts of the internet.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <img src="~/Images/coffee-beans2.jpg" alt="beans" class="icon" />
+                    <h5 class="card-title">Pew pew</h5>
+                    <p class="card-text">Using power drills for coffee-smashing is extremely dangerous. Don't do this at home!</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 d-flex justify-content-center">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+                    <img src="~/Images/coffee-beans3.jpg" alt="beans" class="icon3" />
+                    <h5 class="card-title">Ready!</h5>
+                    <p class="card-text">We have no idea how any of this works.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="about-us">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col">
+                <img src="~/Images/coffee-world.jpg" alt="our-store" class="img-fluid" />
+            </div>
+            <div class="col">
+                <h1>About Us</h1>
+                <p>No coffee trees were harmed during the process of making this site.</p>
+                <a href="@Url.Action("Contact","Home",null)"><button type="button" class="btn btn-dark btn-lg">Learn more</button></a>
+            </div>
+        </div>
+    </div>
+</section>
+

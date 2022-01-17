@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Ela_Kai_Pou.Web.Areas.Admin.Models.CoffeeViewModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <h1 class="text-center"><i class="fas fa-coffee"></i>Menu</h1>
+
+    <table class="table table-light table-striped table-hover ">
+        <tr class="table-warning">
+            <th class="col-7">
+                <strong>Coffee Name</strong> 
+            </th>
+            <th class="col-1 text-center">
+                <strong>Single</strong>
+            </th>
+            <th class="col-1 text-center">
+                <strong>Double </strong>
+            </th>
+            <th class="col-1 text-center" >
+                <strong>Quadruple</strong>
+            </th>
+            <th class="col-2"></th>
+        </tr>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <strong>@Html.DisplayFor(modelItem => item.Name)</strong> 
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Price_Single)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Price_Double)
+                </td>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.Price_Quadraple)
+                </td>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <td class=" text-center">
+                        <a onclick="showInPopup('@Url.Action("ConfigureProduct","Coffee",new { name = item.Name}, this.Request.Url.Scheme)', 'Create your Coffee' )" class="btn btn-warning" >Choose product</a>
+                    </td>
+                }
+                else
+                {
+            <td class=" text-center">
+                <input type="button" class="btn btn-warning adminBtn" value="Choose Product" onclick="location.href='@Url.Action("LogIn","Account",new { id = "loginLink" })'" />
+            </td>
+                }
+            </tr>
+        }
+    </table>
+</section>
+@section scripts {
+    <script>
+        showInPopup = (url, title) => {
+            $.ajax({
+                type: "Get",
+                url: url,
+                success: function (res) {
+                    $("#form-modal .modal-body").html(res);
+                    $("#form-modal .modal-title").html(title);
+                    $("#form-modal").modal('show');
+                }
+            })
+        }
+    </script>
+}
+

@@ -1,0 +1,76 @@
+﻿@using Ela_Kai_Pou.Entities.Extensions
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                <div class="card">
+                    <div class="card-header text-center bg-danger bg-opacity-75">
+                        <span>Ela Kai Pou - Live Chat</span>
+                    </div>
+                    <div id="chat-main" class="chat-care card-body">
+                        <ul id="discussion" class="chat">
+                        </ul>
+                    </div>
+                    <div class="card-footer">
+                        <div class="input-group">
+                            <input id="btn-input" type="text" class="form-control input-sm rounded-pill" placeholder="Type your message here..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" id="btn-chat">
+                                    Send
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @{ var username = ""; }
+    @if (User.Identity.IsAuthenticated)
+    {
+        username = User.Identity.GetUserFirstName();
+    }
+    <input button id="UserName" hidden value=@username>
+</section>
+
+@section scripts {
+    <script src="~/Scripts/jquery.signalR-2.4.2.min.js"></script>
+    <script src="~/signalr/hubs"></script>
+    <script>
+        $('.card-body').scrollTop(1000000);
+        $(function () {
+            var chat = $.connection.chatHub;
+            chat.client.addNewMessageToPage = function (name, message) {
+                $('#discussion').append('<li class="agent clearfix bg-danger bg-opacity-10 chat-msg"><strong>' + htmlEncode(name)
+                    + '</strong>' + '<p>' + htmlEncode(message) + '</p></li>');
+                var d = $('#chat-main');
+                d.scrollTop(d.prop("scrollHeight"));
+            };
+
+            var username = document.getElementById('UserName').value;
+            if (username == '') {
+                $('#UserName').val(prompt('Enter your name:', ''));
+            }
+            $('#btn-input').focus();
+            $.connection.hub.start().done(function () {
+                $('#btn-chat').click(function () {
+                    chat.server.send($('#UserName').val(), $('#btn-input').val());
+                    $('#btn-input').val('').focus();
+                });
+                $('#btn-input').on('keypress', function (e) {
+                    if (e.which == 13 && $('#btn-input').val() != "") {
+                        chat.server.send($('#UserName').val(), $('#btn-input').val());
+                        $('#btn-input').val('').focus();
+                    }
+                });
+            });
+        });
+        function htmlEncode(value) {
+            var encodedValue = $('<div />').text(value).html();
+            return encodedValue;
+        }
+    </script>
+}

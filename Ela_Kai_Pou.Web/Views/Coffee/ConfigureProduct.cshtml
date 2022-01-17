@@ -1,0 +1,55 @@
+﻿@model Ela_Kai_Pou.Web.Models.OrderItemViewModel
+
+@{
+    ViewBag.Title = ViewBag.name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+    
+    <h4>@ViewBag.Name</h4>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <fieldset>
+            <div class="form-horizontal">
+                <hr />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Sweetness, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.Sweetness, "Sweet")
+                        <span>Sweet</span>
+                        @Html.RadioButtonFor(model => model.Sweetness, "Medium")
+                        <span>Medium</span>
+                        @Html.RadioButtonFor(model => model.Sweetness, "Black")
+                        <span>Black</span>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Sweetness, "", new { @class = "text-danger" })
+                </div>
+                <br />
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.RadioButtonFor(model => model.Size, "Single")
+                        <span>Single</span>
+                        @Html.RadioButtonFor(model => model.Size, "Double")
+                        <span>Double</span>
+                        @Html.RadioButtonFor(model => model.Size, "Quadruple")
+                        <span>Quadruple</span>
+                    </div>
+                    @Html.ValidationMessageFor(m => m.Size, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <br />
+            <div>
+                <span>Quantity : </span>
+                @Html.TextBoxFor(model => model.Quantity, new { @type = "number", @min = "1",@max = "100", @step = "1", @value = "@model.Quantity" })
+                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+            </div>
+            <br />
+            <div class="col-md-offset-2 col-md-10">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button class="btn btn-success " type="submit" >Add To Cart</button>
+            </div>          
+        </fieldset>
+    }
+

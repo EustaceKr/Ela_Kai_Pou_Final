@@ -1,0 +1,62 @@
+﻿@using Microsoft.AspNet.Identity
+@using Ela_Kai_Pou.Entities.Extensions
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ela Kai Pou</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+</head>
+
+<body>
+    <nav class="py-0 navbar navbar-light navbar-expand-lg fixed-top" id="navbar">
+        <div class="container">
+            <a href="@Url.Action("Index","Home", new { Area = ""})" class="navbar-brand">
+                <img src="@Url.Content("~/Images/logo.png")" alt="logo" class="logo" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse navbarNavAltMarkup">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a href="@Url.Action("Index","Product",new { area = "Admin"})">Manage Products</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Index","AdminOrder",new { area = "Admin"})">Users' Orders</a></li>
+                    <li class="nav-item"><a href="@Url.Action("Index","AppUser", new { area = "Admin"})">Users' Details</a></li>
+                </ul>
+
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        @RenderBody()
+    </div>
+    <footer id="footer" class="fixed-bottom">
+        <div class="container">
+            <div class="row align-items-center-center">
+                <p>&copy; @DateTime.Now.Year - Group project by Team 88 + 3</p>
+            </div>
+        </div>
+    </footer>
+
+    @RenderSection("scripts", required: false)
+    <script>
+        var prevScrollpos = window.pageYOffset;
+        window.onscroll = function () {
+            var currentScrollPos = window.pageYOffset;
+            if (prevScrollpos > currentScrollPos) {
+                document.getElementById("navbar").style.top = "0";
+            } else {
+                document.getElementById("navbar").style.top = "-90px";
+            }
+            prevScrollpos = currentScrollPos;
+        }
+    </script>
+</body>
+</html>
